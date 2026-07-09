@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+redis
+obs-websocket-py
+python-multipart
+openai
+sse-starlette
+python-dotenv
+ddgs
+httpx
+mutagen

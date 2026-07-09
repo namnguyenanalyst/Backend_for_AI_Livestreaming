@@ -1,0 +1,22 @@
+# Môi trường ảo Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# File biến môi trường (Bảo mật)
+.env
+
+# Bỏ qua toàn bộ file trong thư mục uploads, nhưng giữ lại các file mẫu (Reference Audio)
+uploads/*
+!uploads/voice_preview_riley - engaging young female voice.mp3
+!uploads/Ngọc_Huyền_nhẹ_nhàng.mp3
+!uploads/custom_ref/
+!uploads/voices/
+
+# Bỏ qua các thư mục chứa file rác sinh ra trong quá trình chạy
+uploads/temp_audio/
+
+# Các file video hoặc audio test không cần thiết
+*.mp4
