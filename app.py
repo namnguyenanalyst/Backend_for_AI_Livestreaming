@@ -60,3 +60,4 @@ async def shutdown_event():
 @app.get("/")
 def read_root():
     return {"status": "ok", "message": "AI Livestream Backend đang chạy!"}
+ 

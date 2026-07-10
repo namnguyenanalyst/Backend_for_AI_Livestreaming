@@ -11,12 +11,12 @@ OBS_PASSWORD = os.getenv("OBS_PASSWORD", "adminhyraone")
 # Cấu hình Redis
 REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379")
 
-# Cấu hình Deepseek AI
-DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY", "")
-DEEPSEEK_BASE_URL = os.getenv("DEEPSEEK_BASE_URL", "https://api.savegate.ai/v1")
-DEEPSEEK_MODEL = os.getenv("DEEPSEEK_MODEL", "deepseek-v4-pro") # Người dùng chọn deepseek-v4-pro
+# Cấu hình LLM AI
+LLM_API_KEY = os.getenv("LLM_API_KEY", "")
+LLM_BASE_URL = os.getenv("LLM_BASE_URL", "https://api.savegate.ai/v1")
+LLM_MODEL = os.getenv("LLM_MODEL", "gemini-3.5-flash") # Người dùng chọn gemini-3.5-flash
     
-# Cấu hình OmniVoice TTS
+# Cấu hình OmniVoice
 OMNIVOICE_API_URL = os.getenv("OMNIVOICE_API_URL", "http://172.16.0.199:8002/clone_voice")
 WEBHOOK_URL = os.getenv("WEBHOOK_URL", "http://localhost:8000/api/webhook/omnivoice")
 WEBHOOK_SECRET = os.getenv("WEBHOOK_SECRET", "omni_secret_123")
@@ -238,114 +238,66 @@ Never fabricate missing information.
 
 Generate approximately 4,000–5,000 English words (around 30 minutes of spoken narration).
 
-The content should be divided into the following proportions:
+The content MUST be divided into the following proportions and address specific aspects:
 
-40% Market Update
+1. Market Overview (40-50%)
+This should be the longest section. You must collect and analyze:
+- Bitcoin (Current Price, 24h/7d movement, Trading Volume, Dominance)
+- Ethereum (Price, Gas Fee, Staking, TVL, Layer 2)
+- Notable Altcoins (Top Gainers/Losers, Surging volume, Highly discussed coins)
+- Stablecoins (USDT, USDC, FDUSD, Stablecoin Inflows/Outflows)
+- Market Indicators (Fear & Greed Index, Open Interest, Funding Rate, Liquidations, ETF Flows, Market Cap)
+- On-chain Activity (Whale movements, Smart Money, Token Unlocks, Token Burns, Treasury Movements)
 
-Include whenever available:
+2. Breaking News (20-25%)
+This is highly engaging content. Include topics that directly impact the market and investor sentiment:
+- Exchange Listings/Delistings (Binance, Coinbase, Upbit, etc.)
+- Network Updates (Hard Forks, Mainnets, Testnets)
+- Business (Partnerships, Funding, M&A)
+- Security (Hacks, Exploits, Bridge Attacks, Bug Bounties)
+- Regulations (SEC updates, ETFs, Legal policies, Crypto legalization by countries)
 
-* BTC
-* ETH
-* Major Altcoins
-* 24h movement
-* 7-day movement
-* Market capitalization
-* BTC dominance
-* ETH dominance
-* Trading volume
-* ETF updates
-* Institutional flows
-* Stablecoin flows
-* Fear & Greed Index
-* Open Interest
-* Funding Rate
-* Whale activity
-* On-chain metrics
-* Token unlocks
-* Macroeconomic events affecting crypto
+3. Ecosystem Trends (15%)
+Analyze major ecosystems such as Ethereum, Solana, BNB Chain, Base, Arbitrum, Optimism, Sui, Aptos, TON, Avalanche, Hyperliquid.
+Answer the following:
+- Which ecosystem is seeing TVL growth?
+- Which ecosystem has a surge in new users?
+- What are the standout DApps?
+- What is the newest narrative?
 
-30% Web3 Education
+4. Knowledge Corner (10-15%)
+Do not explain overly basic concepts every day. Instead, explain concepts tied directly to current market events, such as:
+- Why is the Funding Rate increasing?
+- How do Token Unlocks affect price?
+- What is a Spot ETF?
+- How does Restaking work?
+- What does TVL actually signify?
+- Why are Gas Fees spiking right now?
+- Why is Stablecoin inflow considered a positive signal?
 
-Select several topics each time, such as:
+5. Wallet & DeFi Updates (10%)
+Include updates such as:
+- Wallets supporting new chains
+- New features (Swaps, Bridges, Staking)
+- Airdrops
+- New DApps
+- Phishing warnings and Scam alerts
 
-* Seed Phrase
-* Private Key
-* Public Key
-* Wallet Security
-* Gas Fees
-* Bridge
-* Layer 2
-* Rollups
-* DeFi
-* AMM
-* Liquidity Pools
-* Impermanent Loss
-* Lending
-* Borrowing
-* Yield Farming
-* DAO
-* Tokenomics
-* Governance
-* Smart Contracts
-* Staking
-* Restaking
-* Liquid Staking
+---
 
-For every topic:
+# GUIDING QUESTIONS
 
-* explain clearly
-* provide practical examples
-* explain common beginner mistakes
-* explain security best practices
-
-20% Wallet Features
-
-Objectively explain wallet capabilities using examples such as:
-
-* Trust Wallet
-* MetaMask
-* Rabby
-* Phantom
-* Coinbase Wallet
-* OKX Wallet
-* Backpack
-* Safe Wallet
-
-Possible features:
-
-* Non-custodial
-* Self-custody
-* Multi-chain
-* Swap
-* Bridge
-* Staking
-* NFT
-* WalletConnect
-* DApp Browser
-* Import Wallet
-* Backup Wallet
-* Hardware Wallet Support
-* MPC Wallet
-
-Never advertise.
-
-Remain objective.
-
-10% Community
-
-Include recent:
-
-* AMAs
-* conferences
-* hackathons
-* ecosystem updates
-* partnerships
-* governance proposals
-* roadmap updates
-* token listings
-* mainnet launches
-* testnet launches
-* ecosystem achievements
+You MUST ensure your narrative answers the following questions every day:
+1. How is the market performing today?
+2. What is having the biggest impact on the market right now?
+3. What are the most notable signals for Bitcoin and Ethereum?
+4. Are there any events in the past 24 hours affecting prices?
+5. Where is the money flowing (which ecosystem)?
+6. Which projects or tokens are attracting the most attention?
+7. Are there any security risks or scams the community should be aware of?
+8. Are there any regulatory or policy changes?
+9. Are there any major Web3 events happening in the next few days?
+10. What should newcomers to the market keep in mind today?
 
 ---
 
@@ -360,6 +312,8 @@ ABSOLUTELY NO MARKDOWN FORMATTING. Do not use asterisks (*), underscores (_), or
 ABSOLUTELY NO BULLET POINTS OR DASHES (-). Write everything as continuous sentences.
 
 ABSOLUTELY NO HEADINGS OR NUMBERED SECTIONS (e.g., Do not use "I. TỔNG QUAN", "1. Tin tức", or "---").
+
+IMPORTANT NUMBER FORMATTING: You MUST spell out all numbers, currencies, decimals, and percentages entirely in words instead of using digits. For example: write "sixty-five thousand dollars" instead of "$65,000", write "five percent" instead of "5%", and write "one point five" instead of "1.5". This applies to whatever language you are writing in.
 
 Use smooth, natural transitions between paragraphs.
 
@@ -397,10 +351,13 @@ Before finishing, verify that:
 
 ✓ Content ratio follows:
 
-* 40% Market Update
-* 30% Web3 Education
-* 20% Wallet Features
-* 10% Community
+* 40-50% Market Overview
+* 20-25% Breaking News
+* 15% Ecosystem Trends
+* 10-15% Knowledge Corner
+* 10% Wallet & DeFi Updates
+
+✓ All guiding questions are answered.
 
 ✓ All important facts are verified.
 

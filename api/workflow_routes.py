@@ -33,8 +33,7 @@ def start_subtitle_stream(
     }
 
 @router.post("/av_subtitle/start")
-def start_av_subtitle_stream(
-    background_tasks: BackgroundTasks,
+async def start_av_subtitle_stream(
     scene_name: str = Form(..., description="Tên cảnh (Scene) trong OBS"),
     text_source_name: str = Form(..., description="Tên nguồn Text trong OBS (VD: Text - MC)"),
     media_source_name: str = Form(..., description="Tên nguồn Media trong OBS (VD: Audio - MC)"),
@@ -58,8 +57,7 @@ def start_av_subtitle_stream(
     # Import ở đây để tránh lỗi vòng lặp (circular import)
     from workflow.av_streamer import AVStreamer
         
-    background_tasks.add_task(
-        AVStreamer.start_streaming,
+    await AVStreamer.start_streaming(
         scene_name=scene_name,
         text_source_name=text_source_name,
         media_source_name=media_source_name,
@@ -71,3 +69,43 @@ def start_av_subtitle_stream(
         "status": "success",
         "message": "Đã khởi động tiến trình AV Streaming ngầm (Phụ đề + Giọng nói)."
     }
+
+@router.post("/av_subtitle/stop")
+async def stop_av_subtitle_stream(
+    scene_name: str = Form(..., description="Tên cảnh (Scene) trong OBS để dừng stream")
+):
+    """
+    Dừng tiến trình AV Streaming liên tục.
+    """
+    from workflow.av_streamer import AVStreamer
+    await AVStreamer.stop_streaming(scene_name)
+    
+    return {
+        "status": "success",
+        "message": f"Đã phát lệnh dừng AV Streaming cho cảnh '{scene_name}'."
+    }
+
+@router.get("/av_subtitle/latest_text")
+async def get_latest_text(scene_name: str):
+    """
+    Lấy đoạn văn bản mới nhất vừa được AI sinh ra cho luồng stream.
+    """
+    from core.redis_client import get_redis
+    from workflow.av_streamer import AVStreamer
+    
+    redis = await get_redis()
+    latest_text_key = AVStreamer.REDIS_LATEST_TEXT.format(scene=scene_name)
+    text = await redis.get(latest_text_key)
+    
+    if not text:
+        return {
+            "status": "not_found",
+            "message": f"Chưa có văn bản nào được sinh ra cho cảnh '{scene_name}'."
+        }
+        
+    return {
+        "status": "success",
+        "scene_name": scene_name,
+        "text": text
+    }
+

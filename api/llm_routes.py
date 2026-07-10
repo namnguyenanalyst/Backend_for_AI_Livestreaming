@@ -5,7 +5,7 @@ from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 from typing import Optional
 
-from clients.llm_client import deepseek_client
+from clients.llm_client import llm_client
 
 from core.logger import get_logger
 
@@ -24,7 +24,7 @@ async def stream_text(req: GenerateRequest, request: Request):
     """
     async def event_generator():
         try:
-            async for chunk in deepseek_client.generate_stream(req.prompt, req.instruction_key):
+            async for chunk in llm_client.generate_stream(req.prompt, req.instruction_key):
                 if await request.is_disconnected():
                     logger.info("Client đã ngắt kết nối.")
                     break
@@ -41,7 +41,7 @@ async def generate_text(req: GenerateRequest):
     Gọi LLM sinh toàn bộ văn bản và trả về ngay trong 1 block JSON.
     Phù hợp để test sinh text mà không cần streaming.
     """
-    full_text = await deepseek_client.generate_text(req.prompt, req.instruction_key)
+    full_text = await llm_client.generate_text(req.prompt, req.instruction_key)
     return {"status": "success", "text": full_text}
 
 @router.post("/generate-non-stream", summary="Sinh văn bản (Non-streaming)")
@@ -53,7 +53,7 @@ async def generate_non_stream(req: GenerateRequest, request: Request):
     async def event_generator():
         # Gọi non-stream (block cho đến khi sinh xong toàn bộ 5000 từ)
         # Sẽ mất khoảng vài chục giây đến vài phút tùy độ dài
-        full_text = await deepseek_client.generate_text(req.prompt, req.instruction_key)
+        full_text = await llm_client.generate_text(req.prompt, req.instruction_key)
         
         if await request.is_disconnected():
             logger.info("Client đã ngắt kết nối trong lúc đợi non-stream.")
