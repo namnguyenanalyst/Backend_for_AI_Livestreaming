@@ -70,7 +70,8 @@ class AVStreamer:
                         latest_text_key = AVStreamer.REDIS_LATEST_TEXT.format(scene=scene_name)
                         await redis.set(latest_text_key, full_text)
                         
-                        clean_text = re.sub(r'\n+', ' ', full_text).strip()
+                        full_text = full_text.replace("\\n", "\n")
+                        clean_text = full_text.strip()
                         raw_sentences = re.split(r'(?<=[.!?])\s+', clean_text)
                         sentences = [s.strip() for s in raw_sentences if s.strip()]
                         
@@ -212,7 +213,8 @@ class AVStreamer:
         
         # 3. Chèn đoạn text mồi ban đầu
         if full_text:
-            clean_text = re.sub(r'\n+', ' ', full_text).strip()
+            full_text = full_text.replace("\\n", "\n")
+            clean_text = full_text.strip()
             raw_sentences = re.split(r'(?<=[.!?])\s+', clean_text)
             sentences = [s.strip() for s in raw_sentences if s.strip()]
             if sentences:

@@ -14,11 +14,14 @@ class SubtitleStreamer:
     def _wrap_text(text: str, max_words: int = 12) -> str:
         """
         Chia một câu thành nhiều dòng, mỗi dòng tối đa `max_words` từ.
+        Bảo toàn các ngắt dòng vật lý có sẵn trong văn bản.
         """
-        words = text.split()
+        paragraphs = text.split('\n')
         lines = []
-        for i in range(0, len(words), max_words):
-            lines.append(" ".join(words[i:i+max_words]))
+        for p in paragraphs:
+            words = p.split()
+            for i in range(0, len(words), max_words):
+                lines.append(" ".join(words[i:i+max_words]))
         return "\n".join(lines)
 
     
@@ -29,8 +32,9 @@ class SubtitleStreamer:
         """
         logger.info(f"Bắt đầu chạy phụ đề cho source '{source_name}'.")
         
-        # Tiền xử lý: Làm sạch các ký tự xuống dòng liên tiếp
-        clean_text = re.sub(r'\n+', ' ', full_text).strip()
+        # Tiền xử lý: Biến chuỗi "\n" thành ngắt dòng vật lý thực sự và giữ nguyên
+        full_text = full_text.replace("\\n", "\n")
+        clean_text = full_text.strip()
         
         # Tách câu bằng Regex (dựa vào dấu ., ?, ! theo sau là khoảng trắng)
         # Bao gồm cả dấu trong kết quả cắt
