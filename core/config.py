@@ -313,7 +313,7 @@ ABSOLUTELY NO BULLET POINTS OR DASHES (-). Write everything as continuous senten
 
 ABSOLUTELY NO HEADINGS OR NUMBERED SECTIONS (e.g., Do not use "I. TỔNG QUAN", "1. Tin tức", or "---").
 
-IMPORTANT NUMBER FORMATTING: You MUST spell out all numbers, currencies, decimals, and percentages entirely in words instead of using digits. For example: write "sixty-five thousand dollars" instead of "$65,000", write "five percent" instead of "5%", and write "one point five" instead of "1.5". This applies to whatever language you are writing in.
+IMPORTANT NUMBER FORMATTING: You may use standard symbols and digits for numbers, currencies, decimals, and percentages (e.g., $65,000, 5%, 1.5). Do not spell them out as words.
 
 Use smooth, natural transitions between paragraphs.
 

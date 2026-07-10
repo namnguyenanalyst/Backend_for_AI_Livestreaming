@@ -61,7 +61,7 @@ class AVStreamer:
                 from clients.search_client import get_market_context
                 context = await get_market_context()
                 
-                base_prompt = "Act as a Crypto market analyst. Provide an update on today's Bitcoin price and highlight the most significant cryptocurrency news of the week. Compile this into a detailed, highly accurate news report in English. Please write strictly in continuous paragraphs without any markdown, bullet points, or special characters. IMPORTANT: You MUST spell out all numbers, currencies, decimals, and percentages entirely in words instead of using digits (e.g., write 'sixty-five thousand dollars' instead of '$65,000')."
+                base_prompt = "Act as a Crypto market analyst. Provide an update on today's Bitcoin price and highlight the most significant cryptocurrency news of the week. Compile this into a detailed, highly accurate news report in English. Please write strictly in continuous paragraphs without any markdown, bullet points, or special characters. You may use standard symbols for numbers, currencies, and percentages (e.g., $65,000, 10.5%)."
                 prompt = f"{context}\n\n{base_prompt}"
                 try:
                     full_text = await llm_client.generate_text(prompt, "web3_researcher")
@@ -109,10 +109,13 @@ class AVStreamer:
                 
             logger.info(f"[Prefetcher] Bắt đầu tạo audio cho câu: {sentence[:30]}...")
             try:
+                from workflow.text_normalizer import normalize_for_tts
+                spoken_text = normalize_for_tts(sentence)
+                
                 if ref_audio_path:
-                    audio_path = await OmniVoiceClient.generate_speech(sentence, ref_audio_path=ref_audio_path)
+                    audio_path = await OmniVoiceClient.generate_speech(spoken_text, ref_audio_path=ref_audio_path)
                 else:
-                    audio_path = await OmniVoiceClient.generate_speech(sentence)
+                    audio_path = await OmniVoiceClient.generate_speech(spoken_text)
                     
                 if audio_path and os.path.exists(audio_path):
                     ready_item = json.dumps({
