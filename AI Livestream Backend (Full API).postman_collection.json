@@ -1,0 +1,1214 @@
+{
+	"info": {
+		"_postman_id": "e90a8345-8c11-4c29-82eb-c5b0d5dda720",
+		"name": "AI Livestream Backend (Full API)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "54788766",
+		"_collection_link": "https://hainamnguyen0104-9878133.postman.co/workspace/Hainam-Nguyen's-Workspace~81abe1be-b533-481a-8a5d-29a052816bae/collection/54788766-e90a8345-8c11-4c29-82eb-c5b0d5dda720?action=share&source=collection_link&creator=54788766"
+	},
+	"item": [
+		{
+			"name": "1. Scenes (Quản lý Cảnh)",
+			"item": [
+				{
+					"name": "Tạo Cảnh",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "scene_name",
+									"value": "Scene_2",
+									"description": "Tên Phân cảnh mới muốn tạo trên OBS.",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/obs/scene/create",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"obs",
+								"scene",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Đổi Cảnh",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "scene_name",
+									"value": "Scene_1",
+									"description": "Tên Phân cảnh muốn chuyển tới. Lưu ý: Cảnh này phải tồn tại.",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/obs/scene/change",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"obs",
+								"scene",
+								"change"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lấy Thông Tin Cảnh Hiện Tại",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/obs/scene/info",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"obs",
+								"scene",
+								"info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lấy Danh Sách Cảnh",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/obs/scene/list",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"obs",
+								"scene",
+								"list"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "2. Sources (Quản lý Nguồn)",
+			"item": [
+				{
+					"name": "Tạo Nguồn (Cơ bản / Upload)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "scene_name",
+									"value": "Scene_1",
+									"description": "Tên Cảnh chứa nguồn này",
+									"type": "text"
+								},
+								{
+									"key": "input_name",
+									"value": "News_Text",
+									"description": "Tên tùy chọn để quản lý Nguồn",
+									"type": "text"
+								},
+								{
+									"key": "input_kind",
+									"value": "text_ft2_source_v2",
+									"description": "Các mã loại nguồn (input_kind) phổ biến trên Linux:\n- text_ft2_source_v2: Văn bản (Text/Subtitle)\n- image_source: Hình ảnh tĩnh\n- vlc_source: (hoặc ffmpeg_source) : Video/Media (rất phù hợp để phát nhạc/video)\n- color_source_v3: Đổ màu nền\n- xshm_input: (hoặc pipewire-desktop-capture-source) : Quay toàn bộ màn hình\n- xcomposite_input: Quay một cửa sổ phần mềm cụ thể\n- v4l2_input: (hoặc pipewire-camera-capture-source) : Quay Camera/Webcam\n- pulse_input: (hoặc alsa_input_capture) : Thu âm thanh (Microphone)\n",
+									"type": "text"
+								},
+								{
+									"key": "media_file",
+									"description": "Tùy chọn: Chọn file video/ảnh từ máy tính tải lên",
+									"type": "file",
+									"src": [],
+									"disabled": true
+								},
+								{
+									"key": "color_rgb",
+									"value": "148,120,209",
+									"description": "Tick : color_rgb khi chọn color_source_v3",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/obs/source/create",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"obs",
+								"source",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cập Nhật Text",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "source_name",
+									"value": "text",
+									"description": "Tên Nguồn chữ đang có trên OBS",
+									"type": "text"
+								},
+								{
+									"key": "text_content",
+									"value": "Hello I know you",
+									"description": "Nội dung văn bản muốn đổi",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/obs/source/text/update",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"obs",
+								"source",
+								"text",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bật/Tắt Hiển Thị Nguồn",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "scene_name",
+									"value": "Scene_1",
+									"description": "Tên Cảnh chứa nguồn",
+									"type": "text"
+								},
+								{
+									"key": "source_name",
+									"value": "MyVideo",
+									"description": "Tên nguồn cần Ẩn/Hiện",
+									"type": "text"
+								},
+								{
+									"key": "is_visible",
+									"value": "true",
+									"description": "true = Bật con mắt (Hiển thị), false = Tắt con mắt (Ẩn)",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/obs/source/visibility",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"obs",
+								"source",
+								"visibility"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Play Media",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "source_name",
+									"value": "MyVideo",
+									"description": "Tên Video Nguồn muốn Play",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/obs/source/media/play",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"obs",
+								"source",
+								"media",
+								"play"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pause Media",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "source_name",
+									"value": "video",
+									"description": "Tên Video Nguồn muốn Tạm dừng",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/obs/source/media/pause",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"obs",
+								"source",
+								"media",
+								"pause"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Stop Media",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "source_name",
+									"value": "MyVideo",
+									"description": "Tên Video Nguồn muốn Dừng hẳn",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/obs/source/media/stop",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"obs",
+								"source",
+								"media",
+								"stop"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "3. Transform & Filter (Nâng cao)",
+			"item": [
+				{
+					"name": "Chỉnh Tọa Độ (Transform)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "scene_name",
+									"value": "Scene_1",
+									"description": "Cảnh chứa nguồn",
+									"type": "text"
+								},
+								{
+									"key": "source_name",
+									"value": "MyVideo",
+									"description": "Nguồn muốn dịch chuyển",
+									"type": "text"
+								},
+								{
+									"key": "transform_json",
+									"value": "{\"positionX\": 100, \"positionY\": 100, \"scaleX\": 0.5, \"scaleY\": 0.5}",
+									"description": "Tọa độ X, Y và Thu phóng X, Y (1.0 là mức gốc, 0.5 là thu nhỏ một nửa)",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/obs/transform/set",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"obs",
+								"transform",
+								"set"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sắp xếp Lớp (Z-Index)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "scene_name",
+									"value": "Scene_1",
+									"description": "Cảnh chứa Nguồn",
+									"type": "text"
+								},
+								{
+									"key": "source_name",
+									"value": "MyVideo",
+									"description": "Nguồn muốn đẩy lên hoặc xuống",
+									"type": "text"
+								},
+								{
+									"key": "index",
+									"value": "1",
+									"description": "Mức ưu tiên xếp chồng. Số lớn đè lên số nhỏ. 0 là dưới cùng.",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/obs/transform/set_index",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"obs",
+								"transform",
+								"set_index"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Thêm Filter (Phông xanh)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "source_name",
+									"value": "MyVideo",
+									"description": "Tên nguồn muốn gắn Filter",
+									"type": "text"
+								},
+								{
+									"key": "filter_name",
+									"value": "FilterPhongXanh",
+									"description": "Tên đặt cho Bộ lọc này",
+									"type": "text"
+								},
+								{
+									"key": "filter_kind",
+									"value": "chroma_key_filter_v2",
+									"description": "Mã loại Filter. VD: chroma_key_filter_v2 (Phông xanh), color_filter_v2 (Màu sắc)",
+									"type": "text"
+								},
+								{
+									"key": "filter_settings_json",
+									"value": "{\"opacity\": 1.0}",
+									"description": "Thông số kỹ thuật. VD: {\"opacity\": 1.0}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/obs/filter/create",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"obs",
+								"filter",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Xóa Filter",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "source_name",
+									"value": "MyVideo",
+									"description": "Tên Nguồn đang chứa bộ lọc",
+									"type": "text"
+								},
+								{
+									"key": "filter_name",
+									"value": "FilterPhongXanh",
+									"description": "Tên bộ lọc muốn Xóa",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/obs/filter/remove",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"obs",
+								"filter",
+								"remove"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bật/Tắt Filter",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "source_name",
+									"value": "MyVideo",
+									"description": "Tên Nguồn chứa bộ lọc",
+									"type": "text"
+								},
+								{
+									"key": "filter_name",
+									"value": "FilterPhongXanh",
+									"description": "Tên bộ lọc cần Tắt/Bật",
+									"type": "text"
+								},
+								{
+									"key": "enabled",
+									"value": "true",
+									"description": "true = Bật con mắt, false = Tắt con mắt bộ lọc",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/obs/filter/toggle",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"obs",
+								"filter",
+								"toggle"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "4. Transition, Output & Screenshots",
+			"item": [
+				{
+					"name": "Lấy Danh Sách Hiệu Ứng",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/obs/transition/list",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"obs",
+								"transition",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Đổi Hiệu Ứng Chuyển Cảnh",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "transition_name",
+									"value": "Fade",
+									"description": "Tên hiệu ứng, ví dụ: Fade, Cut",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/obs/transition/set",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"obs",
+								"transition",
+								"set"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Chỉnh Thời Lượng Hiệu Ứng",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "duration_ms",
+									"value": "500",
+									"description": "Thời lượng tính bằng Milli-giây. Ví dụ: 500 = 0.5 giây",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/obs/transition/duration",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"obs",
+								"transition",
+								"duration"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bật/Tắt Virtual Camera",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/obs/output/virtual_cam/toggle",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"obs",
+								"output",
+								"virtual_cam",
+								"toggle"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lấy Trạng Thái Stream",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/obs/output/stream/status",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"obs",
+								"output",
+								"stream",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bắt Đầu Stream",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/obs/output/stream/start",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"obs",
+								"output",
+								"stream",
+								"start"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Dừng Stream",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/obs/output/stream/stop",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"obs",
+								"output",
+								"stream",
+								"stop"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bắt Đầu Ghi Hình",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/obs/output/record/start",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"obs",
+								"output",
+								"record",
+								"start"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Dừng Ghi Hình",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/obs/output/record/stop",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"obs",
+								"output",
+								"record",
+								"stop"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Chụp Ảnh Màn Hình (Base64)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/obs/screenshot/MyVideo",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"obs",
+								"screenshot",
+								"MyVideo"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "5. Studio Mode (Chế độ Hậu trường)",
+			"item": [
+				{
+					"name": "Bật/Tắt Studio Mode",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "enabled",
+									"value": "true",
+									"description": "true = Chia đôi màn hình, false = Màn hình đơn",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/obs/studio/toggle",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"obs",
+								"studio",
+								"toggle"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lấy Trạng Thái Studio",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/obs/studio/status",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"obs",
+								"studio",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Đưa Cảnh Vào Preview",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "scene_name",
+									"value": "Scene_2",
+									"description": "Tên Cảnh muốn ném vào màn hình Trái (Preview)",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/obs/studio/preview/set",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"obs",
+								"studio",
+								"preview",
+								"set"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Xem Cảnh Đang Preview",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/obs/studio/preview/get",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"obs",
+								"studio",
+								"preview",
+								"get"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Trigger Transition (Đẩy Lên Live)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/obs/studio/transition",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"obs",
+								"studio",
+								"transition"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "6. Audio (Âm thanh)",
+			"item": [
+				{
+					"name": "Bật/Tắt Tiếng (Mute)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "source_name",
+									"value": "MyVideo",
+									"description": "Tên nguồn âm thanh (Thường là Video hoặc Mic)",
+									"type": "text"
+								},
+								{
+									"key": "is_muted",
+									"value": "true",
+									"description": "true = Im lặng, false = Bật tiếng",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/obs/audio/mute",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"obs",
+								"audio",
+								"mute"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Chỉnh Âm Lượng (Volume)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "source_name",
+									"value": "MyVideo",
+									"description": "Tên nguồn âm thanh",
+									"type": "text"
+								},
+								{
+									"key": "volume_db",
+									"value": "-5.5",
+									"description": "Mức Âm lượng Decibel. 0.0 là to nhất (Gốc), số âm là nhỏ dần.",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/obs/audio/volume",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"obs",
+								"audio",
+								"volume"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "7. Workflow",
+			"item": [
+				{
+					"name": "Tạo content",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"prompt\": \"Act as a Crypto market analyst. Provide an update on today's Bitcoin price and highlight the most significant cryptocurrency news of the week. Compile this into a detailed, highly accurate news report in English. Please write strictly in continuous paragraphs without any markdown, bullet points, or special characters. You may use standard symbols for numbers, currencies, and percentages (e.g., $65,000, 10.5%).\",\n    \"instruction_key\": \"web3_researcher\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/llm/generate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"llm",
+								"generate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Chia văn bản",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "source_name",
+									"value": "News_Text",
+									"type": "text"
+								},
+								{
+									"key": "text_content",
+									"value": "Good morning, and welcome to this comprehensive digital asset market update and educational report for Monday, July 6, 2026. My role today is to provide you with a detailed, fact-based overview of current cryptocurrency market conditions, highlight the most significant developments from the past week, and then guide you through several important educational concepts that are essential for anyone navigating the Web3 ecosystem. Please remember that nothing in this report constitutes financial advice, and all market data reflects conditions at the time of research. Cryptocurrency investments carry substantial risks including market volatility, smart contract vulnerabilities, regulatory uncertainty, and the potential for complete loss of capital. Always conduct your own independent research before making any financial decisions.Let us begin with the market update. Bitcoin is trading at approximately 63,248 US dollars as we enter this Monday session, according to market data aggregated from multiple sources including RoboForex and CoinDesk. This represents a significant recovery from the lows observed in late June, when the world's largest cryptocurrency briefly dipped below the 60,000 dollar threshold. Over the past seven days, Bitcoin has climbed roughly 5 percent, breaking back above the psychologically important 63,000 dollar level during the quiet July 4 holiday trading session in the United States. The total cryptocurrency market capitalization currently stands at approximately 2.07 trillion dollars, with Bitcoin dominance measured at 58.07 percent according to data from CoinCodex. This dominance figure has remained relatively stable, indicating that capital flows during this recent recovery have been relatively balanced between Bitcoin and the broader altcoin market rather than concentrated in a single sector.Ethereum, the second largest cryptocurrency by market capitalization, is trading at approximately 1,570 US dollars, according to data from Binance, CoinGlass, and CoinGecko. The asset has experienced a challenging period, with CoinGlass reporting a 24-hour decline of approximately 3.72 percent and a seven-day decline of around 5.37 percent. Ethereum has been testing a multi-year support floor near 1,547 dollars, as reported by TradingNews, and has now recorded eight consecutive weeks of outflows from its spot exchange-traded fund products. The Ethereum market capitalization currently sits at approximately 189 billion dollars, with 24-hour trading volumes near 9.6 billion dollars. Solana is trading at approximately 81.92 US dollars according to CoinMarketCap, with blockchainreporter.net noting that Solana broke above the key 80 dollar resistance level on July 3, a threshold that had rejected price advances three separate times during the recent correction. This 15 percent weekly gain marks one of the stronger performances among major layer-one blockchain tokens.BNB, the native token of the BNB Smart Chain ecosystem, is trading at approximately 550 dollars according to Crypto.com and CoinMarketCap. This price level represents a decline of roughly 59 percent from its all-time high near 1,370 dollars, which was reached in October 2025 according to TradingView data. Notably, BNB received a significant institutional milestone on May 28, 2026 when VanEck launched the VBNB exchange-traded fund, the first spot BNB ETF in the United States, providing traditional investors with regulated access to the token for the first time. The VBNB ETF was trading at 24 dollars according to Benzinga, with a 52-week range between 23.33 and 27.08 dollars. XRP is trading at approximately 1.05 US dollars according to CoinMarketCap, with OKX reporting a price of 1.034 dollars. The token gained approximately 5 percent in 24 hours during the July 4 holiday session, leading gains among major digital assets according to CoinDesk.Turning now to institutional flows, spot Bitcoin exchange-traded funds in the United States recorded net inflows of 221.7 million dollars on July 2, 2026, as reported by SoSoValue data cited by OtonTechnology. This marked the largest single-day inflow since early May and broke a punishing streak of ten consecutive trading days of outflows that had significantly weighed on market sentiment. The broader context, however, remains complex. Bitcoin exchange-traded funds had recorded approximately 1.8 billion dollars in total outflows during one week in late June, according to CryptoFrontNews, and Citi recently lowered its Bitcoin price target to 82,000 dollars, citing weakening ETF demand according to BitcoTasks. On the Ethereum side, spot ETFs saw a modest net inflow of 14.89 million dollars on July 1, breaking a nine-day outflow streak, according to data from SoSoValue via BitcoinWorld and ChainCatcher. BlackRock's ETHA product led this recovery with 36.6 million dollars in inflows, while Grayscale's Mini ETH product showed outflows. Despite this single day of positive flows, the broader trend remains concerning, with Farside Investors data showing cumulative Ethereum spot ETF outflows of approximately negative 358.3 million dollars since June 17, 2026.The stablecoin market provides additional texture to the current liquidity picture. The total stablecoin market capitalization declined by approximately 1.9 billion dollars to 311.3 billion dollars for the week ending July 5, 2026, according to GNCrypto. Tether's USDT lost approximately 791 million dollars during this period, accounting for roughly 41 percent of total outflows. Together, USDT and USDC continue to represent more than 82 percent of the combined market capitalization of the top 15 stablecoins by market cap. On the Ethereum network specifically, USDT supply declined by approximately 2.52 percent over the past 30 days, representing roughly 2.03 billion dollars pulled off the chain, while USDC supply declined by 4.56 percent over the same period according to BlockchainMagazine. This contraction in stablecoin supply typically signals reduced purchasing power available for deployment into risk assets, though it is worth noting that capital may simply be rotating into other blockchain ecosystems or into traditional finance instruments rather than exiting the digital asset space entirely.Market sentiment indicators paint a picture of persistent caution. The Crypto Fear and Greed Index, as tracked by CoinGlass and Alternative.me, currently registers at 24 points, firmly within the Extreme Fear zone. This represents a three-point increase from the prior day according to Coinspot.io, but the overall sentiment remains tense. An earlier reading had plunged as low as 18 points during the recent sell-off, as reported by BitAcademyWeb. On the derivatives side, open interest on Bitcoin futures has been declining during the recent price bounce, with analyst Axel Adler Jr noting that this pattern signals deleveraging rather than a fresh inflow of leveraged long positions. The Bitcoin cumulative volume delta, which measures the net difference between buying and selling volume across spot and futures markets, showed approximately 681 million dollars in net buying for the week ending July 2 according to data from Hyblock cited by CoinMarketCap Academy. This indicates that spot demand has been absorbing selling pressure, even as leveraged traders have been reducing their exposure.The macroeconomic backdrop has been the dominant narrative driver over the past week. Weak United States labour market data significantly reduced market expectations for further Federal Reserve interest rate hikes, according to RoboForex and IG Singapore. The US payroll miss, as reported by IG, has shifted the interest rate outlook and provided a tailwind for risk assets including cryptocurrencies. The US Dollar Index and Treasury yields responded by easing, which historically has correlated with Bitcoin price appreciation. Additional macro events to monitor this week include upcoming US activity data releases, Chinese inflation figures, and the beginning of the corporate earnings season, as highlighted by IG Singapore.Several significant news developments have shaped the cryptocurrency landscape over the past week. The most widely covered story involves United States President Donald Trump, whose financial disclosures released on July 1, 2026 revealed that he earned approximately 1.4 billion dollars from cryptocurrency ventures during 2025, according to reporting from Politico, The New York Times, and CBS News. This 927-page filing, described as the most detailed presidential financial disclosure in history, confirmed that cryptocurrency is now the single largest source of the President's income, spanning meme coin royalties and other digital asset ventures. The New York Times reported that nearly one million investors who purchased the Trump-affiliated memecoin have collectively lost approximately 3.81 billion dollars through the end of June, according to blockchain analytics firm Nansen. The Guardian noted that more than 400 Americans expressed feelings of outrage, disgust, and despair regarding the President earning over one billion dollars from crypto businesses while serving in office. The President defended these earnings in an interview, stating that his wealth was attributable to his prior career and that the ventures had been set up before he took office. This story has intensified the ongoing debate about conflicts of interest at the intersection of cryptocurrency markets and public policy, particularly as the administration continues to shape regulatory frameworks that directly affect the digital asset industry.In regulatory news, the United States Securities and Exchange Commission has opened a 60-day public comment period seeking input on a new regulatory framework specifically designed for cryptocurrency exchange-traded funds, as reported by LiveBitcoinNews on July 1, 2026. This development signals that the SEC may be moving toward a more structured approach for approving and overseeing crypto-based ETF products, potentially including leveraged strategies and novel asset classes beyond Bitcoin and Ethereum. Separately, the Senate crypto bill, known as the CLARITY Act, missed its July 4 legislative deadline, with TechTimes reporting that three unresolved fights remain, leaving approximately three weeks for negotiations before the congressional recess. One significant development was that the National Sheriffs' Association dropped its objections to the DeFi provisions within the CLARITY Act, according to CoinAlertNews on July 3, removing a key law enforcement hurdle. The March 2026 joint interpretation by the SEC and CFTC had already established a working token taxonomy, described by both agency chairmen as a major step toward regulatory clarity, but an interpretive guidance can be reversed by a future administration; only legislation in the form of a statute provides durable clarity.On the international regulatory front, Ripple achieved a significant milestone on July 6, 2026, obtaining full MiCA approval from Luxembourg's Commission de Surveillance du Secteur Financier, granting the company a Crypto Asset Service Provider license valid across the entire European Economic Area, according to CoinAlertNews. This development follows Ripple's receipt of an Electronic Money Institution license in February 2026 and a preliminary Green Light Letter in June, as detailed by CoinFractal. The full MiCA license enables Ripple to offer a complete infrastructure for crypto asset and stablecoin payments through a single regulatory integration across all 30 EEA member states. Similarly, Kraken secured its MiCA license in Ireland in late June, joining a growing list of major exchanges that have achieved regulatory compliance under Europe's comprehensive crypto framework. In Asia, Thailand's Securities and Exchange Commission released a three-year strategic plan for 2026 through 2028, focused on establishing a regulatory framework for crypto ETFs and promoting asset tokenization, as reported by Binance Square.On-chain metrics provide additional insight into network health. Bitcoin's daily transaction count has rebounded significantly in 2026, with Bitcoin.com reporting on July 5 that the year's median daily transaction count stands at 529,623 and the average at 533,890, with both figures already exceeding the full-year median and average posted in 2024 and 2025. The network recently recorded its third-busiest day ever, demonstrating sustained usage growth despite the price correction. Ethereum whale selling activity has been notable, with CoinFractal reporting approximately 900 million dollars in selling pressure from large holders as ETH tested the 1,547 dollar support level. The narrative of the quarter, according to CryptoRank, has shifted toward prediction markets, reflecting growing interest in decentralized betting and forecasting platforms built on blockchain infrastructure.This concludes the market update portion of our report. Let us now transition to the educational segment, where we will explore several foundational concepts that are critical for understanding the Web3 ecosystem. These topics are selected to build your knowledge systematically, regardless of whether you are a newcomer or an experienced participant in this space.We begin with the concept of gas fees, which is one of the most frequently misunderstood aspects of using blockchain networks. A gas fee is the payment required to successfully process a transaction or execute a smart contract on a blockchain network. Think of it as the fuel that powers the blockchain engine. Without gas fees, validators or miners would have no economic incentive to include your transaction in a block. On the Ethereum network, gas fees are denominated in gwei, which is a tiny fraction of one ETH, specifically one billionth of an ETH. The total gas fee for any given transaction is calculated by multiplying the gas limit, which is the maximum amount of computational work you are willing to pay for, by the gas price, which is the amount you are willing to pay per unit of gas. When the network is congested, meaning many users are competing for block space simultaneously, gas prices rise because validators prioritize transactions with higher attached fees.A common beginner mistake is setting the gas limit too low out of a desire to save money on transaction fees. When this happens, the transaction may run out of gas before it can complete, causing it to fail and revert. Crucially, the gas spent up to the point of failure is still consumed and is not refunded. This means that setting an insufficient gas limit can result in paying fees for a transaction that ultimately does not succeed. Another frequent error is misunderstanding the relationship between transaction complexity and cost. A simple transfer of ETH from one wallet to another consumes far less gas than interacting with a complex decentralized finance protocol that involves multiple smart contract calls, liquidity provision, or token swaps. Users should always check current network conditions using a gas tracker tool before initiating transactions, and they should understand that timing matters. Gas fees on Ethereum are typically lowest during weekends and early morning hours in United States time zones, when network activity naturally decreases. Security best practice dictates that you should never interact with smart contracts whose gas consumption you do not understand, and you should be particularly cautious of any decentralized application that requests an unusually high gas limit, as this could indicate a malicious contract designed to drain your wallet.Building on the concept of gas fees, let us examine Layer 2 scaling solutions, which were developed in direct response to the high cost and congestion problems on the Ethereum mainnet, often referred to as Layer 1. A Layer 2 network is a secondary protocol built on top of an existing blockchain that processes transactions off the main chain while still benefiting from its security guarantees. The core idea is simple but powerful: instead of recording every single transaction directly on the Ethereum mainnet, Layer 2 networks bundle or roll up many transactions together and submit only a compressed summary to the Layer 1 chain. This dramatically reduces the per-transaction cost while maintaining the security and decentralization properties of the underlying blockchain. The most prominent categories of Layer 2 solutions are optimistic rollups, such as Arbitrum and Optimism, and zero-knowledge rollups, such as zkSync and StarkNet. Optimistic rollups assume transactions are valid by default and only run computation through a fraud proof system if a challenge is raised during a dispute window, typically lasting seven days. Zero-knowledge rollups, by contrast, generate a cryptographic proof that a batch of transactions was executed correctly, and this proof is verified on the mainnet instantly, allowing for faster finality.A common beginner mistake when using Layer 2 networks is assuming that assets can be freely moved between different Layer 2 solutions without friction or delay. In reality, moving funds from one Layer 2 network to another typically requires withdrawing back to the Ethereum mainnet first and then depositing into the destination network, which can be expensive and time-consuming. Some bridge protocols have been developed to facilitate direct Layer 2 to Layer 2 transfers, but these introduce additional smart contract risk. Another important consideration is that not all decentralized applications are deployed on every Layer 2 network, so users may find that their preferred DeFi protocol, NFT marketplace, or gaming application is only available on certain chains. Security best practice requires that you always verify you are interacting with the official bridge contract when moving funds between Layer 1 and Layer 2, as fake bridge interfaces are a common vector for phishing attacks. You should also be aware that some Layer 2 networks are still in relatively early stages of development, and their fraud proof or upgrade mechanisms may be controlled by a small group of developers through multi-signature wallets, representing a degree of centralization risk that differs from the highly decentralized Ethereum mainnet.Let us now explore one of the most important mechanisms in decentralized finance: the automated market maker, commonly abbreviated as AMM. An AMM is a type of decentralized exchange protocol that uses a mathematical formula to price assets rather than relying on a traditional order book where buyers and sellers place bids and asks. The most common formula, popularized by Uniswap, is the constant product formula, expressed as x multiplied by y equals k, where x and y represent the quantities of two tokens in a liquidity pool and k is a constant that must remain unchanged after any trade. When a trader swaps one token for another, they change the ratio of tokens in the pool, and the formula automatically adjusts the price to maintain the constant product. This means that larger trades relative to the pool size cause greater price impact, creating a natural incentive for traders to split large orders or use aggregators that route trades across multiple pools. The beauty of the AMM model is that it enables permissionless trading without requiring a centralized intermediary to match orders, and anyone can become a liquidity provider by depositing an equal value of both tokens into a pool in exchange for liquidity provider tokens that represent their share.The concept of a liquidity pool is central to understanding how AMMs function. A liquidity pool is simply a smart contract that holds reserves of two or more tokens and allows users to trade between them according to the predetermined mathematical formula. Liquidity providers earn a share of the trading fees generated by the pool, typically ranging from 0.05 percent to 1 percent per trade, proportional to their share of the total liquidity. This creates a passive income opportunity, but it also introduces a critical risk that every liquidity provider must understand: impermanent loss. Impermanent loss occurs when the price ratio of the two tokens in a pool changes after you have deposited them, compared to if you had simply held the tokens in your wallet. The larger the price divergence, the greater the impermanent loss. It is called impermanent because the loss is not realized unless you withdraw your liquidity while the price ratio differs from your entry point. If prices return to their original ratio, the loss disappears. However, if prices diverge permanently and you withdraw, the loss becomes permanent. A common beginner mistake is viewing liquidity provision as risk-free yield. Many newcomers see attractive annual percentage yields advertised on DeFi platforms and deposit funds without understanding that impermanent loss can exceed the fee earnings, particularly in volatile pairs or pools containing tokens with highly correlated price movements. The mathematical reality is that a 500 percent price change in one token relative to the other results in an impermanent loss of approximately 25.5 percent. For stablecoin pairs or highly correlated assets, impermanent loss risk is minimal, and providing liquidity can be a relatively stable source of yield. But for volatile pairs, the risks are substantial.Security best practice for liquidity provision begins with understanding the protocol you are interacting with. Verify that the smart contracts have been audited by reputable firms, check the protocol's total value locked and trading volume history, and start with small amounts until you are comfortable with the mechanics. Never connect your primary wallet containing significant funds to an unverified DeFi protocol. Use a dedicated wallet with only the funds you intend to deploy. Be aware that malicious actors frequently create fake liquidity pools that mimic legitimate protocols, complete with official-looking logos and interfaces, with the sole purpose of stealing deposited funds. Always verify the contract address through multiple official sources before depositing any assets.Moving to our wallet features segment, let us explore the capabilities and characteristics of several prominent non-custodial wallets that serve as the gateway to Web3 for millions of users worldwide. A non-custodial wallet is a digital asset wallet where the user controls the private keys, as opposed to a custodial wallet where a third party such as an exchange holds the keys on the user's behalf. The fundamental principle of self-custody is captured in the well-known phrase: not your keys, not your coins. When you hold your own private keys, you have sovereign control over your digital assets, but you also bear the full responsibility for securing them.Trust Wallet, acquired by Binance in 2018, has grown into one of the most widely used multi-chain, non-custodial wallets in the world. It supports over 100 blockchain networks including Ethereum, BNB Smart Chain, Solana, Polygon, Avalanche, and many others. The wallet features an integrated decentralized application browser, enabling users to interact directly with DeFi protocols, NFT marketplaces, and blockchain games from within the wallet interface. Trust Wallet includes a built-in swap feature that allows users to exchange tokens across supported networks without leaving the application, and it offers staking functionality for proof-of-stake assets such as BNB, Cosmos, and Tezos. The wallet generates a twelve-word recovery phrase during initial setup, which serves as the master key to all assets held across every supported blockchain. Trust Wallet also supports WalletConnect, a protocol that allows the wallet to connect securely to decentralized applications on desktop browsers by scanning a QR code, providing convenience without exposing the private key to the connected application.MetaMask, developed by ConsenSys, is arguably the most widely recognized Ethereum-compatible wallet. Initially launched as a browser extension for Chrome and Firefox, MetaMask has since expanded to include a mobile application. It supports Ethereum and all Ethereum Virtual Machine compatible networks, including Polygon, Arbitrum, Optimism, Avalanche C-Chain, and BNB Smart Chain. Users can manually add custom networks by entering the appropriate chain ID and RPC endpoint information. MetaMask's swap feature aggregates quotes from multiple decentralized exchange aggregators to find competitive rates for token swaps. The wallet also supports hardware wallet integration, allowing users to connect a Ledger or Trezor device to MetaMask and use the hardware wallet's secure element to sign transactions while enjoying MetaMask's user interface. A critical security feature in MetaMask is the ability to create multiple accounts within a single wallet, each derived from the same seed phrase but with separate private keys, enabling users to segregate funds for different purposes without managing multiple seed phrases.Phantom wallet has established itself as the leading wallet for the Solana ecosystem, though it has expanded to support Ethereum and Polygon as well. Phantom was designed with user experience as a priority, featuring a clean interface that makes token management, NFT viewing, and staking accessible to non-technical users. The wallet integrates directly with Solana's decentralized finance ecosystem, including platforms like Jupiter for token swaps and Magic Eden for NFT trading. Phantom supports the Solana Pay protocol for merchant payments and includes a built-in token swap feature. A distinguishing characteristic of Phantom is its visual NFT gallery, which displays users' digital collectibles in an intuitive, image-focused layout rather than as a list of token IDs. The wallet also supports Ledger hardware wallet integration for enhanced security.Coinbase Wallet should not be confused with the Coinbase exchange application. Coinbase Wallet is a separate, standalone, self-custody wallet that gives users complete control over their private keys, in contrast to the custodial exchange app where Coinbase holds the keys. The wallet supports Ethereum, Solana, Bitcoin, Dogecoin, and many EVM-compatible networks. It features a built-in decentralized application browser, WalletConnect support, and the ability to purchase cryptocurrency with fiat through integrated on-ramp providers. Coinbase Wallet includes a username feature that allows users to send crypto using human-readable names instead of full wallet addresses, reducing the risk of errors in manual address entry.Rabby wallet, developed by DeBank, has gained significant adoption among DeFi power users due to its advanced security features. Rabby automatically simulates every transaction before the user signs it, providing a preview of the expected balance changes, which helps users understand exactly what a smart contract interaction will do to their wallet before they commit. The wallet also automatically switches to the correct blockchain network when a user visits a decentralized application, eliminating the common error of being connected to the wrong chain. Rabby includes a transaction decoding feature that translates complex smart contract function calls into human-readable descriptions, and it maintains an allowlist of trusted contract addresses while flagging suspicious or unverified contracts. These features make Rabby particularly well-suited for users who frequently interact with sophisticated DeFi protocols where transaction details are not always transparent.OKX Wallet positions itself as a multi-chain gateway supporting over 80 blockchain networks. It includes features for swapping, bridging, staking, and NFT management. The wallet supports the Bitcoin Lightning Network for fast and low-cost BTC transfers, and it integrates with hardware wallets. OKX Wallet features a DeFi dashboard that aggregates position information across multiple protocols, providing a consolidated view of assets deployed across the DeFi ecosystem. Backpack wallet, developed by the team behind the Mad Lads NFT collection and anchored in the Solana ecosystem, emphasizes a modular architecture that separates the wallet interface from the asset storage layer. Safe Wallet, formerly known as Gnosis Safe, provides multi-signature functionality where multiple parties must approve a transaction before it can be executed, making it the standard for decentralized autonomous organizations, protocol treasuries, and teams that manage shared funds. Safe Wallet supports threshold configurations such as two-of-three or three-of-five signatures required.Multi-party computation wallets, commonly called MPC wallets, represent a newer approach to key management that eliminates the single-point-of-failure of a traditional seed phrase. In an MPC wallet, the private key is split into multiple shards distributed across different devices or locations, and these shards collaboratively sign transactions without ever reconstructing the full private key in one place. This architecture significantly reduces the risk of key theft through malware, phishing, or physical compromise, and it enables social recovery mechanisms where a user can regain access by contacting trusted guardians who hold key shards. The trade-off is that MPC wallets typically rely on some degree of centralized infrastructure to coordinate the signing process, and users must carefully consider the trust assumptions involved. Backup procedures for MPC wallets differ fundamentally from seed phrase backups, and users should thoroughly understand their specific wallet's recovery process before depositing significant funds. Hardware wallet support is another critical feature that allows users to add an additional layer of security by storing private keys on a dedicated physical device that is isolated from internet-connected computers, requiring physical confirmation of each transaction through button presses on the device itself.For the community segment of our report, let us highlight some noteworthy ecosystem developments and events from the past week. The prediction market narrative has emerged as the most significant thematic trend of the third quarter of 2026, as identified by CryptoRank's quarterly narrative tracker. Platforms like Polymarket continue to see surging volumes and user adoption, driven by interest in political event contracts, sports forecasting, and macroeconomic outcome betting. This growth reflects a broader maturation of decentralized information markets and their increasing integration with real-world data and events. The VanEck BNB ETF launch on May 28, 2026 represents a historic milestone for the BNB Chain ecosystem, adding BNB to the small but growing list of crypto assets with regulated spot ETF products available to United States investors alongside Bitcoin and Ethereum. The ETF's trading performance and asset accumulation in its first six weeks will be closely watched by market participants as a gauge of institutional appetite for exchange-native tokens.The Ripple MiCA approval on July 6, 2026 is a landmark moment not just for Ripple but for the broader institutional adoption narrative in Europe. With a full Crypto Asset Service Provider license now in hand, Ripple can deploy its payment infrastructure, including the RLUSD stablecoin, across all European Economic Area member states under a unified regulatory framework. This development may accelerate institutional participation in digital asset payments and cross-border settlement throughout Europe. On the legislative front in the United States, the Senate's failure to pass the CLARITY Act by the symbolic July 4 deadline underscores the continued complexity of crafting comprehensive digital asset legislation that satisfies competing interests from industry, consumer advocates, privacy proponents, and law enforcement. With only weeks remaining before the congressional recess, the outcome remains uncertain, and the market will be sensitive to any signals of progress or impasse.The Trump crypto earnings disclosure has also sparked significant discourse within the community. Beyond the political dimensions, industry participants are debating the long-term implications of a sitting United States President holding substantial personal financial interests in the very sector he regulates. The New York Times report that nearly one million investors suffered collective losses of 3.81 billion dollars on the memecoin alone has raised difficult questions about market integrity, insider advantage, and the responsibilities of public figures who launch or promote digital assets. This story is likely to continue unfolding throughout the summer and may influence both market sentiment and regulatory priorities in the months ahead.In closing, I want to reiterate that all market data presented in this report reflects conditions as of July 6, 2026, and market conditions can change rapidly and without warning. Cryptocurrency investments carry significant risks including extreme price volatility, the potential for total loss, smart contract vulnerabilities, bridge exploits, regulatory changes, phishing attacks, and wallet compromise. Nothing in this report should be interpreted as a recommendation to buy, sell, or hold any digital asset. The educational content is provided for informational purposes only, and you should always conduct thorough independent research and consider consulting with a qualified professional before making any financial decisions. Please stay safe, protect your private keys, verify every transaction, and approach all opportunities in this space with healthy skepticism and a commitment to ongoing learning. Thank you for your attention.\n",
+									"type": "text"
+								},
+								{
+									"key": "delay_seconds",
+									"value": "4.0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/workflow/subtitle/start",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"workflow",
+								"subtitle",
+								"start"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Chạy text và âm thanh",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "scene_name",
+									"value": "Scene_1",
+									"type": "text"
+								},
+								{
+									"key": "text_source_name",
+									"value": "News_Text",
+									"type": "text"
+								},
+								{
+									"key": "media_source_name",
+									"value": "News_Audio",
+									"type": "text"
+								},
+								{
+									"key": "text_content",
+									"value": "We begin our digital asset market analysis on this Friday, July tenth, two thousand twenty-six, by examining the macroeconomic conditions and general sentiment shaping the cryptocurrency landscape. Over the past week, the digital asset ecosystem has shown notable resilience, with market participants responding to a mix of macroeconomic data releases, regulatory developments, and shifting capital flows. The global cryptocurrency market capitalization currently hovers around two point four five trillion dollars, reflecting a steady recovery after a brief period of consolidation earlier in the summer. Investor sentiment has gradually shifted from neutral to cautiously optimistic, as indicated by various sentiment models and steady accumulation patterns observed across major networks. Market participants are closely watching the interaction between traditional financial markets and digital assets, especially as institutional interest continues to mature through regulated investment vehicles.  Bitcoin has demonstrated strong upward momentum over the last twenty-four hours, trading at approximately ninety-eight thousand four hundred fifty dollars at the time of this writing. This current price represents a two point eight percent increase over the past day and a cumulative gain of six point five percent over the last seven days. The trading volume for Bitcoin has also seen a significant uptick, exceeding thirty-eight billion dollars within the last twenty-four hours, indicating robust liquidity and active participation from both retail and institutional traders. Bitcoin dominance remains a key metric for understanding market structure, currently sitting at fifty-eight point two percent of the total cryptocurrency market capitalization. This high level of dominance suggests that capital remains concentrated in the largest and most established digital asset, even as alternative assets attempt to capture market share.  A primary driver of this recent price action is the consistent inflow of capital into spot Bitcoin exchange-traded funds. Over the past five trading days, institutional investors have directed an aggregate net inflow of seven hundred fifty million dollars into these regulated investment vehicles. This sustained demand has helped absorb localized selling pressure and reinforced the baseline support levels for the asset. Financial institutions are increasingly integrating digital assets into their asset allocation models, which has led to a more predictable and steady bid for Bitcoin. Analysts point out that the daily inflows into these exchange-traded products are beginning to outpace the daily creation of new supply, creating a favorable supply-demand dynamic that supports the current upward trajectory.  Turning our attention to the second-largest cryptocurrency by market capitalization, Ethereum is currently trading at three thousand four hundred twenty-five dollars. This reflects a daily increase of one point nine percent and a seven-day gain of four point two percent. The transaction fees on the Ethereum mainnet, commonly referred to as gas fees, have remained remarkably low, averaging between six and nine gwei for standard transactions. This low-fee environment is largely a result of the widespread adoption of layer two scaling solutions and the successful implementation of previous network upgrades that optimized data storage. Consequently, users are enjoying much cheaper transactions on secondary networks while the security of the primary Ethereum blockchain remains robust.  Ethereum staking metrics continue to show healthy participation, with approximately thirty-two percent of the circulating Ethereum supply now locked in the network consensus layer. The total value locked in staking contracts has surpassed one hundred ten billion dollars, reflecting strong long-term commitment from validator node operators. Liquid staking protocols, led by Lido and various decentralized alternatives, represent a significant portion of this staked volume, allowing users to earn yield while maintaining liquidity. The average yield for staking Ethereum currently hovers around three point five percent annually, which remains an attractive option for institutional custodians and retail participants seeking low-risk yields within the native ecosystem.  The activity on Ethereum layer two networks continues to expand, with networks like Arbitrum, Optimism, and Base reporting record transaction volumes. The combined total value locked across all major layer two networks is currently valued at forty-two billion dollars. Base, the incubator network from Coinbase, has seen a particularly sharp increase in daily active addresses, driven by consumer applications and low transaction costs that often sit below zero point zero one dollars. Arbitrum remains the leader in terms of total assets secured, housing over fifteen billion dollars in smart contracts. The shift of execution from the main chain to these rollup networks has successfully mitigated congestion, enabling the broader Ethereum ecosystem to handle millions of transactions per day without experiencing the prohibitive fee spikes of previous cycles.  In the altcoin market, Solana has reclaimed the spotlight, trading at one hundred eighty-eight dollars, representing a nine percent gain over the past week. Solana decentralized exchanges have seen their trading volumes rival those of Ethereum on several days, fueled by low latency and minimal fees. Meanwhile, newer layer one platforms like Sui and Aptos have also registered double-digit percentage gains over the past seven days, driven by ecosystem incentives and developer integrations. On the other hand, some older utility tokens and governance tokens have experienced capital outflows as investors reallocate their portfolios toward assets with stronger on-chain activity and clearer value accrual mechanisms.  The stablecoin sector remains the lifeblood of crypto market liquidity, with the total stablecoin market capitalization surpassing one hundred sixty-five billion dollars. Tether, represented by the symbol U S D T, continues to dominate the market with a circulating supply of one hundred twelve billion dollars. USD Coin, or U S D C, has also seen substantial growth, with its supply reaching thirty-four billion dollars, largely driven by increased institutional adoption and integration within regulated financial channels. Inflows of stablecoins into exchanges are historically viewed as a leading indicator of buying power, and the net inflow of one point two billion dollars in stablecoins over the past week suggests that traders are positioning themselves for potential market entries.  Key market indicators present a picture of controlled enthusiasm. The Crypto Fear and Greed Index currently stands at seventy-two out of one hundred, indicating a state of greed but remaining well below the extreme greed levels that typically precede market corrections. Open interest in Bitcoin futures contracts has reached twenty-four billion dollars across major derivatives exchanges, representing a five percent increase over the past week. While high open interest can lead to heightened volatility due to sudden liquidations, the funding rates for these contracts remain balanced, suggesting that the leverage is not excessively one-sided and that the current spot price movement is backed by organic buying rather than speculative bubbles.  Over the past twenty-four hours, the market witnessed approximately fifty-five million dollars in liquidations, with short positions accounting for seventy percent of the total. This short squeeze helped propel Bitcoin past the ninety-eight thousand dollar resistance level. On-chain analysis reveals that long-term holders, defined as addresses that have held assets for more than one hundred fifty-five days, have paused their selling activities and entered another phase of accumulation. Meanwhile, whale wallets holding between one hundred and one thousand Bitcoins have increased their holdings by twelve thousand Bitcoins over the past two weeks, indicating that larger players are confident in the mid-term outlook.  Attention must also be paid to scheduled token unlocks, which introduce new supply into the market. This week, several prominent projects are unlocking a combined total of two hundred eighty million dollars worth of tokens. Historically, large unlocks can create temporary downward price pressure, especially if early investors or team members choose to realize profits. Conversely, protocol treasury movements have shown that major foundations are focusing their reserves on developer grants and ecosystem expansion rather than market liquidation. This strategic allocation of capital helps to mitigate the negative price impact often associated with supply expansions.  Now, let us examine the major breaking news that has shaped market dynamics over the past seven days. In exchange news, Binance announced the listing of two new layer two infrastructure tokens, which resulted in a temporary price surge of over thirty percent for both assets within hours of the announcement. In contrast, several smaller, low-liquidity tokens were slated for delisting due to failing to meet the exchange volume and security standards. On the network front, the Ethereum developer community successfully launched a new devnet for the upcoming upgrade, testing key features aimed at improving transaction efficiency and smart contract execution. This technical progress has reassured investors of the network long-term roadmap.  In corporate developments, a major financial technology conglomerate finalized its acquisition of a leading digital asset custody provider for four hundred fifty million dollars. This acquisition is seen as a strategic move to bridge the gap between traditional banking infrastructure and decentralized finance networks. Furthermore, a prominent Web three venture capital firm announced the closure of a new seven hundred fifty million dollar fund dedicated to early-stage startups building decentralized physical infrastructure networks. This substantial commitment of capital highlights the continued interest of institutional venture capital in the underlying utility of blockchain technology, despite broader economic uncertainties.  The security sector witnessed both challenges and victories this week. A decentralized lending protocol suffered a smart contract exploit resulting in the loss of twelve million dollars. Fortunately, the protocol team, working alongside security researchers, identified the vulnerability and negotiated with the attacker, who returned ten million dollars in exchange for a ten percent whitehat bounty. This incident serves as a stark reminder of the inherent smart contract risks associated with complex financial protocols. Users are encouraged to diversify their platform exposure and prioritize audited protocols with long-running track records of security and operational transparency.  On the regulatory front, the United States Securities and Exchange Commission issued updated guidance regarding the custody of digital assets by registered investment advisers. The new rules clarify the security and reporting requirements for firms holding crypto assets on behalf of clients, which is expected to make it easier for traditional wealth managers to offer digital asset exposure. While some industry groups expressed concern over the compliance costs associated with the new framework, many legal experts view this as a positive step toward regulatory clarity that will encourage long-term institutional participation.  Internationally, the European Union regulatory body published a comprehensive report on the progress of the Markets in Crypto-Assets regulation, highlighting high compliance rates among stablecoin issuers operating within the region. In Asia, a major financial hub announced plans to launch a licensed pilot program for tokenized real-world assets, focusing on treasury bills and commercial real estate. This move reflects a growing global trend where governments seek to harness the efficiency of blockchain technology for traditional financial instruments while maintaining strict oversight to protect consumers and prevent illicit financial activities.  Shifting our focus to ecosystem trends, several public blockchains are experiencing significant shifts in total value locked and user engagement. The Solana ecosystem has seen its total value locked grow by twelve percent this week, reaching six point four billion dollars. This growth is driven by the expansion of its decentralized lending platforms and liquid staking protocols. Daily active user addresses on Solana have reached two point two million, driven by cheap transaction fees and highly active speculative markets. Standout applications within this ecosystem are focusing on consumer loyalty programs and decentralized social networks, which are attracting a younger demographic of Web three users.  The Base network, incubated by Coinbase, has recorded a twenty percent increase in its weekly transaction count, surpassing forty million transactions over the past seven days. The primary catalyst for this growth is the launch of several new decentralized social applications and micro-payment networks that leverage the security of Ethereum while charging users only a fraction of a cent per interaction. Base has successfully positioned itself as a bridge for retail users entering the Web three space directly from traditional mobile applications, making it one of the fastest-growing ecosystems in terms of monthly active developers.  The Sui blockchain has also shown impressive growth, with its total value locked climbing to nine hundred fifty million dollars, driven by incentives for liquidity providers and partnerships with traditional gaming companies. The Telegram-integrated Open Network, or T O N, continues to leverage its massive instant messaging user base, recording over five million active monthly wallets. The integration of simple mini-games and peer-to-peer payment features within the chat application has created a seamless user experience, allowing non-technical individuals to interact with digital assets without needing to understand the underlying blockchain mechanics.  To help our listeners better understand the mechanics of the market, let us dive into the Knowledge Corner. Today we discuss the concept of funding rates and why they are critical for understanding market leverage. Funding rates are periodic payments made between long and short traders in the perpetual futures market. When the funding rate is positive, it means that long traders are paying short traders, indicating that the market is bullish and there is high demand for leveraged long positions. Conversely, when the funding rate is negative, short traders pay long traders, suggesting a bearish outlook. Monitoring these rates allows market participants to gauge whether a price movement is driven by excessive leverage, which can lead to rapid price liquidations if the market suddenly reverses direction.  Another concept that frequently impacts asset prices is the schedule of token unlocks. When a new project launches, a portion of the total supply is typically locked up for early investors, team members, and advisors to align their long-term interests with the project. These tokens are released gradually over time according to a pre-defined vesting schedule. When an unlock event occurs, a large volume of tokens becomes liquid, which can lead to increased selling pressure on exchanges. Understanding these schedules helps market participants anticipate potential supply shocks and plan their strategies accordingly, avoiding the pitfalls of buying assets immediately before a massive dilution event.  Many newcomers ask about the difference between spot exchange-traded funds and other crypto investment vehicles. A spot exchange-traded fund is a financial product that tracks the actual price of the underlying asset, such as Bitcoin, by purchasing and holding the physical asset in secure digital vaults. When an investor buys a share of the fund, the fund manager must purchase a corresponding amount of Bitcoin to back that share. This differs from futures-based funds, which use derivative contracts to track price movements. Spot funds are highly valued by institutional investors because they provide direct exposure to the asset price without requiring the investor to manage private keys, wallets, or security protocols.  In the realm of wallet and decentralized finance updates, several major non-custodial wallets have released software updates to enhance security and user experience. A prominent multi-chain wallet has integrated support for three new layer two networks, allowing users to manage their portfolios and execute swaps across multiple chains without needing to switch networks manually. Additionally, new built-in security features have been introduced to scan smart contract interactions in real-time, warning users if they are about to sign a transaction that could drain their assets.  Decentralized finance protocols are also upgrading their cross-chain bridging mechanisms. A leading bridge protocol has launched a new version that utilizes zero-knowledge proofs to verify transactions between different blockchains, reducing transaction times from ten minutes to under thirty seconds while enhancing security. This upgrade is expected to lower the risk of bridge exploits, which historically have been a major point of vulnerability in the ecosystem. Liquidity providers on these updated platforms are also benefiting from dynamic fee models that automatically adjust yields based on network demand and volatility.  Finally, we must emphasize the importance of wallet security and vigilance against ongoing scams. Security firms have identified a new phishing campaign that uses sponsored search results to direct users to cloned versions of popular wallet recovery pages. These fraudulent websites ask users to enter their twelve-word recovery seed phrase under the pretense of a mandatory software update. Remember that a legitimate wallet provider will never ask for your recovery phrase or private keys. Always bookmark official websites, verify contract addresses before approving transactions, and use hardware wallets for storing significant amounts of digital assets.  In conclusion, the digital asset market remains highly dynamic and subject to rapid changes. While the current price movements of Bitcoin and Ethereum show signs of strength, it is essential to remember that cryptocurrency markets are inherently volatile and expose investors to significant risks. These include market volatility, smart contract vulnerabilities, regulatory uncertainties, and operational challenges. The information presented today is for educational purposes only and should not be construed as investment advice, financial counsel, or an endorsement to buy or sell any assets. Please conduct your own thorough research, assess your risk tolerance, and consult with a professional financial adviser before making any investment decisions.",
+									"type": "text"
+								},
+								{
+									"key": "ref_audio_file",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/workflow/av_subtitle/start",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"workflow",
+								"av_subtitle",
+								"start"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Dừng chạy text và âm thanh",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "scene_name",
+									"value": "Scene_1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/workflow/av_subtitle/stop",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"workflow",
+								"av_subtitle",
+								"stop"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lấy văn bản",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/workflow/av_subtitle/latest_text?scene_name=Scene_1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"workflow",
+								"av_subtitle",
+								"latest_text"
+							],
+							"query": [
+								{
+									"key": "scene_name",
+									"value": "Scene_1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000"
+		}
+	]
+}
