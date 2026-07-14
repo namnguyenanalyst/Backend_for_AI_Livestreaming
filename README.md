@@ -45,10 +45,10 @@ OBS_PASSWORD=your_obs_password_here
 # Cấu hình Redis
 REDIS_URL=redis://localhost:6379
 
-# Cấu hình LLM AI (Ví dụ: Gemini)
+# Cấu hình LLM AI 
 LLM_API_KEY=your_llm_api_key_here
 LLM_BASE_URL=https://api.your-llm-provider.com/v1
-LLM_MODEL=gemini-3.5-flash
+LLM_MODEL=your_model_you_want_to_set
 
 # Cấu hình OmniVoice (TTS)
 OMNIVOICE_API_URL=http://<your_omnivoice_ip>:8002/clone_voice
